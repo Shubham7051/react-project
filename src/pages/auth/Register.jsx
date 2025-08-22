@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { registerUser } from "../../api/auth";
 import axios from "axios";
-import "./Register.css"; // Make sure this is the CSS I shared
+import "./Register.css";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -20,7 +20,6 @@ const Register = () => {
     specialization: "",
     profile_active: false,
     department: "",
-    shift: "shift 1",
     worker_address: "",
     organization_name: "",
     address: "",
@@ -32,7 +31,6 @@ const Register = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Fetch dropdown data
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -73,7 +71,6 @@ const Register = () => {
       payload.profile_active = formData.profile_active;
     } else if (formData.user_type === "worker") {
       payload.department = formData.department;
-      payload.shift = formData.shift;
       payload.worker_address = formData.worker_address;
     } else if (formData.user_type === "ngo") {
       payload.organization_name = formData.organization_name;
@@ -106,7 +103,6 @@ const Register = () => {
         {error && <p className="error-message">{JSON.stringify(error)}</p>}
 
         <form onSubmit={handleSubmit}>
-          {/* Common Fields */}
           <input
             type="text"
             name="username"
@@ -148,7 +144,6 @@ const Register = () => {
             required
           />
 
-          {/* User Type */}
           <select
             name="user_type"
             value={formData.user_type}
@@ -214,17 +209,6 @@ const Register = () => {
                 onChange={handleChange}
                 required
               />
-              <select
-                name="shift"
-                value={formData.shift}
-                onChange={handleChange}
-                required
-              >
-                <option value="shift 1">Shift 1</option>
-                <option value="shift 2">Shift 2</option>
-                <option value="shift 3">Shift 3</option>
-                <option value="shift 4">Shift 4</option>
-              </select>
               <input
                 name="worker_address"
                 placeholder="Worker Address"
