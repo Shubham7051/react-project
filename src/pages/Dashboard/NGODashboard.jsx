@@ -1,4 +1,3 @@
-// src/pages/Dashboard/NGODashboard.jsx
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
@@ -63,43 +62,49 @@ const NGODashboard = () => {
     }
   };
 
-  // Fetch citizens
-// Fetch citizens
-const fetchCitizens = async () => {
-  setLoadingCitizens(true);
-  setHospitals([]);        // Clear hospitals when viewing citizens
-  setLoadingHospitals(false); // Reset hospital loading state
-  try {
-    const res = await axios.get("http://127.0.0.1:8000/API/NGO/citizen", {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
-    setCitizens(res.data);
-  } catch (err) {
-    console.error(err);
-  }
-  setLoadingCitizens(false);
-};
+  const fetchCitizens = async () => {
+    setLoadingCitizens(true);
+    setHospitals([]);
+    setLoadingHospitals(false);
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/API/NGO/citizen", {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      setCitizens(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+    setLoadingCitizens(false);
+  };
 
-// Fetch hospitals
-const fetchHospitals = async () => {
-  setLoadingHospitals(true);
-  setCitizens([]);        // Clear citizens when viewing hospitals
-  setLoadingCitizens(false); // Reset citizen loading state
-  try {
-    const res = await axios.get("http://127.0.0.1:8000/API/NGO/hospital", {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
-    setHospitals(res.data);
-  } catch (err) {
-    console.error(err);
-  }
-  setLoadingHospitals(false);
-};
-
+  const fetchHospitals = async () => {
+    setLoadingHospitals(true);
+    setCitizens([]);
+    setLoadingCitizens(false);
+    try {
+      const res = await axios.get("http://127.0.0.1:8000/API/NGO/hospital", {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      setHospitals(res.data);
+    } catch (err) {
+      console.error(err);
+    }
+    setLoadingHospitals(false);
+  };
 
   return (
     <div style={{ padding: "1rem" }}>
       <h2>NGO Dashboard</h2>
+
+      {/* Raise Ticket Buttons */}
+      <div style={{ marginBottom: "2rem", display: "flex", gap: "1rem" }}>
+        <Link to="/raise-ticket">
+          <button className="btn btn-primary">Raise Virtual Consultancy Ticket</button>
+        </Link>
+        <Link to="/EmergencyTicket">
+          <button className="btn btn-danger">Raise Emergency Ticket</button>
+        </Link>
+      </div>
 
       <div style={{ marginBottom: "2rem" }}>
         <button onClick={() => setShowForm(!showForm)}>
@@ -184,7 +189,6 @@ const fetchHospitals = async () => {
           {citizens.map(c => (
             <div key={c.id} style={{ border: "1px solid #ccc", padding: "0.5rem", margin: "0.5rem 0" }}>
              <p><strong>Name:</strong> {c.full_name}</p>
-
               <p><strong>Address:</strong> {c.address}</p>
               <p><strong>Disease:</strong> {c.disease}</p>
             </div>

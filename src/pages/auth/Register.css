@@ -13,11 +13,11 @@ html, body, #root {
   padding: 0;
 }
 
-/* Full-page wrapper: perfect horizontal + vertical center */
-.login-wrapper {
+/* Full-page wrapper */
+.form-container {
   display: flex;
-  justify-content: center; /* horizontal center */
-  align-items: center;     /* vertical center */
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
   width: 100vw;
   padding: 20px;
@@ -26,13 +26,13 @@ html, body, #root {
 }
 
 /* Card container */
-.login-card {
+.form-card {
   background: #ffffff;
   padding: 40px 30px;
   border-radius: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
   width: 100%;
-  max-width: 420px;
+  max-width: 480px;
   text-align: center;
   animation: fadeInUp 0.8s ease forwards;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -40,7 +40,7 @@ html, body, #root {
 }
 
 /* Hover effect for card */
-.login-card:hover {
+.form-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15);
 }
@@ -52,17 +52,17 @@ html, body, #root {
 }
 
 /* Title & subtitle */
-.login-title {
+.form-card h2 {
   font-size: 28px;
   font-weight: 700;
   color: #333;
   margin-bottom: 8px;
 }
 
-.login-subtitle {
+.form-card p {
   font-size: 16px;
   color: #666;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 /* Error message */
@@ -80,8 +80,9 @@ html, body, #root {
   40%, 80% { transform: translateX(6px); }
 }
 
-/* Inputs */
-.login-form input {
+/* Form inputs & selects */
+.form-card input,
+.form-card select {
   width: 100%;
   padding: 14px 16px;
   margin: 10px 0;
@@ -91,14 +92,24 @@ html, body, #root {
   transition: all 0.3s ease;
 }
 
-.login-form input:focus {
+.form-card input:focus,
+.form-card select:focus {
   border-color: #1e90ff;
   box-shadow: 0 0 10px rgba(30, 144, 255, 0.2);
   outline: none;
 }
 
+/* Checkbox label */
+.form-card label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
 /* Button */
-.login-btn {
+.form-card button {
   width: 100%;
   padding: 14px;
   margin-top: 15px;
@@ -112,43 +123,42 @@ html, body, #root {
   transition: all 0.3s ease;
 }
 
-.login-btn:hover {
+.form-card button:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(30, 144, 255, 0.3);
 }
 
-/* Register text */
-.register-text {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #555;
+.form-card button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }
 
-.register-text a {
+/* Footer link */
+.form-card p a {
   color: #1e90ff;
   font-weight: 500;
   text-decoration: none;
 }
 
-.register-text a:hover {
+.form-card p a:hover {
   text-decoration: underline;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .login-card {
+  .form-card {
     padding: 35px 25px;
   }
-  .login-title {
+  .form-card h2 {
     font-size: 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .login-card {
+  .form-card {
     padding: 30px 20px;
   }
-  .login-title {
+  .form-card h2 {
     font-size: 22px;
   }
 }

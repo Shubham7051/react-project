@@ -1,6 +1,9 @@
+// src/pages/auth/RaiseEmergencyTicket.jsx
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
+import Logout from "../auth/Logout";
+import "./RaiseEmergencyTicket.css";
 
 const RaiseEmergencyTicket = () => {
   const { accessToken } = useContext(AuthContext);
@@ -20,7 +23,7 @@ const RaiseEmergencyTicket = () => {
       const data = { description, address, phone_no: phoneNo };
 
       const res = await axios.post(
-        "http://127.0.0.1:8000/API/EmergencyTicket/", // Use normal ticket endpoint
+        "http://127.0.0.1:8000/API/EmergencyTicket/",
         data,
         {
           headers: {
@@ -34,23 +37,28 @@ const RaiseEmergencyTicket = () => {
       setDescription("");
       setAddress("");
       setPhoneNo("");
-      console.log("Ticket Response:", res.data);
+      console.log("Emergency Ticket Response:", res.data);
     } catch (err) {
       console.error(err);
       setError(
         err.response?.data?.detail ||
-          err.response?.data?.error ||
-          "Failed to raise ticket"
+        err.response?.data?.error ||
+        "Failed to raise ticket"
       );
     }
   };
 
   return (
-    <div className="form-container">
-      <h2>Raise Emergency Ticket</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>{success}</p>}
-      <form onSubmit={handleSubmit}>
+    <div className="emergency-ticket-page">
+      <div className="ticket-header">
+        <h2>Raise Emergency Ticket</h2>
+        <Logout />
+      </div>
+
+      {error && <p className="message error">{error}</p>}
+      {success && <p className="message success">{success}</p>}
+
+      <form className="ticket-form" onSubmit={handleSubmit}>
         <textarea
           placeholder="Description"
           value={description}
@@ -71,7 +79,9 @@ const RaiseEmergencyTicket = () => {
           onChange={(e) => setPhoneNo(e.target.value)}
           required
         />
-        <button type="submit">Submit Emergency Ticket</button>
+        <button type="submit" className="submit-btn">
+          Submit Emergency Ticket
+        </button>
       </form>
     </div>
   );
