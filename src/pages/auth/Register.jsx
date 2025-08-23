@@ -103,150 +103,178 @@ const Register = () => {
         {error && <p className="error-message">{JSON.stringify(error)}</p>}
 
         <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="first_name"
-            placeholder="First Name"
-            value={formData.first_name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="text"
-            name="last_name"
-            placeholder="Last Name"
-            value={formData.last_name}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-
-          <select
-            name="user_type"
-            value={formData.user_type}
-            onChange={handleChange}
-            required
-          >
-            <option value="citizen">Citizen</option>
-            <option value="doctor">Doctor</option>
-            <option value="worker">Worker</option>
-            <option value="ngo">NGO</option>
-          </select>
-
-          {/* Doctor Fields */}
-          {formData.user_type === "doctor" && (
-            <>
-              <select
-                name="hospital_id"
-                value={formData.hospital_id}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Hospital</option>
-                {hospitals.map((h) => (
-                  <option key={h.id} value={h.registration_number}>
-                    {h.name}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                name="specialization"
-                value={formData.specialization}
-                onChange={handleChange}
-                required
-              >
-                <option value="">Select Specialization</option>
-                {specializations.map((s) => (
-                  <option key={s.id} value={s.category}>
-                    {s.category}
-                  </option>
-                ))}
-              </select>
-
-              <label>
-                <input
-                  type="checkbox"
-                  name="profile_active"
-                  checked={formData.profile_active}
-                  onChange={handleChange}
-                />{" "}
-                Profile Active
-              </label>
-            </>
-          )}
-
-          {/* Worker Fields */}
-          {formData.user_type === "worker" && (
-            <>
-              <input
-                name="department"
-                placeholder="Department"
-                value={formData.department}
-                onChange={handleChange}
-                required
-              />
-              <input
-                name="worker_address"
-                placeholder="Worker Address"
-                value={formData.worker_address}
-                onChange={handleChange}
-              />
-            </>
-          )}
-
-          {/* NGO Fields */}
-          {formData.user_type === "ngo" && (
+          <div className="form-field">
             <input
-              name="organization_name"
-              placeholder="Organization Name"
-              value={formData.organization_name}
+              type="text"
+              name="username"
+              placeholder="Username"
+              value={formData.username}
               onChange={handleChange}
               required
             />
+          </div>
+
+          <div className="form-field">
+            <input
+              type="text"
+              name="first_name"
+              placeholder="First Name"
+              value={formData.first_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-field">
+            <input
+              type="text"
+              name="last_name"
+              placeholder="Last Name"
+              value={formData.last_name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-field">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-field">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <div className="form-field">
+            <select
+              name="user_type"
+              value={formData.user_type}
+              onChange={handleChange}
+              required
+            >
+              <option value="citizen">Citizen</option>
+              <option value="doctor">Doctor</option>
+              <option value="worker">Worker</option>
+              <option value="ngo">NGO</option>
+            </select>
+          </div>
+
+          {formData.user_type === "doctor" && (
+            <>
+              <div className="form-field">
+                <select
+                  name="hospital_id"
+                  value={formData.hospital_id}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select Hospital</option>
+                  {hospitals.map((h) => (
+                    <option key={h.id} value={h.registration_number}>
+                      {h.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-field">
+                <select
+                  name="specialization"
+                  value={formData.specialization}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select Specialization</option>
+                  {specializations.map((s) => (
+                    <option key={s.id} value={s.category}>
+                      {s.category}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="form-field">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="profile_active"
+                    checked={formData.profile_active}
+                    onChange={handleChange}
+                  />{" "}
+                  Profile Active
+                </label>
+              </div>
+            </>
           )}
 
-          {/* Citizen Fields */}
+          {formData.user_type === "worker" && (
+            <>
+              <div className="form-field">
+                <input
+                  name="department"
+                  placeholder="Department"
+                  value={formData.department}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-field">
+                <input
+                  name="worker_address"
+                  placeholder="Worker Address"
+                  value={formData.worker_address}
+                  onChange={handleChange}
+                />
+              </div>
+            </>
+          )}
+
+          {formData.user_type === "ngo" && (
+            <div className="form-field">
+              <input
+                name="organization_name"
+                placeholder="Organization Name"
+                value={formData.organization_name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          )}
+
           {formData.user_type === "citizen" && (
             <>
-              <input
-                name="address"
-                placeholder="Address"
-                value={formData.address}
-                onChange={handleChange}
-              />
-              <label>
+              <div className="form-field">
                 <input
-                  type="checkbox"
-                  name="isNgo"
-                  checked={formData.isNgo}
+                  name="address"
+                  placeholder="Address"
+                  value={formData.address}
                   onChange={handleChange}
-                />{" "}
-                Share data with NGO?
-              </label>
+                />
+              </div>
+              <div className="form-field">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="isNgo"
+                    checked={formData.isNgo}
+                    onChange={handleChange}
+                  />{" "}
+                  Share data with NGO?
+                </label>
+              </div>
             </>
           )}
 

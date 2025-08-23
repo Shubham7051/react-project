@@ -1,0 +1,146 @@
+/* Base Styles */
+.ngo-dashboard {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f8;
+  min-height: 100vh;
+  padding: 2rem 0;
+  margin: 0;
+}
+
+/* Header */
+.dashboard-header {
+  text-align: center;
+  padding: 2rem 0 1rem 0;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+}
+
+.dashboard-header h2 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin: 0;
+}
+
+/* Action Buttons Section */
+.action-buttons,
+.view-data {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4e89ff, #3572d4);
+  color: #fff;
+}
+.btn-danger {
+  background: linear-gradient(135deg, #ff4e4e, #d43535);
+  color: #fff;
+}
+.btn-success {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+  color: #fff;
+}
+.btn-cancel {
+  background: #e0e0e0;
+  color: #333;
+}
+.btn-info {
+  background: #17a2b8;
+  color: #fff;
+}
+.btn-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+  background: #4e89ff;
+  color: #fff;
+}
+
+/* Program Form */
+.program-form {
+  width: 700px;
+  margin: 2rem auto;
+  padding: 25px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.program-form form input,
+.program-form form textarea {
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.program-form form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.date-time-inputs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+/* Data Section */
+.data-section {
+  width: 90%;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.data-section h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+.data-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+.data-card p {
+  margin: 4px 0;
+  font-size: 1rem;
+  color: #34495e;
+}
+
+/* Messages */
+.error-msg {
+  color: #ff4e4e;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+.success-msg {
+  color: #28a745;
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+/* Centering all main sections */
+.ngo-dashboard > section,
+.ngo-dashboard > .program-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

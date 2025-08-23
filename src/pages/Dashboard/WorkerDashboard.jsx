@@ -11,7 +11,6 @@ const WorkerDashboard = () => {
   const [loading, setLoading] = useState(false);
   const [ticketStates, setTicketStates] = useState({}); // {ticketId: "initial" | "selected"}
 
-  // Fetch tickets from backend (and toggle worker_active)
   const fetchTickets = async () => {
     try {
       setLoading(true);
@@ -21,10 +20,9 @@ const WorkerDashboard = () => {
         { headers: { Authorization: `Bearer ${accessToken}` } }
       );
 
-      setProfileActive(res.data.profile_active); // backend returns active status
+      setProfileActive(res.data.profile_active);
       setTickets(res.data.tickets || []);
 
-      // Initialize ticket states
       const states = {};
       (res.data.tickets || []).forEach((t) => {
         states[t.id] = "initial";
@@ -39,12 +37,8 @@ const WorkerDashboard = () => {
     }
   };
 
-  // Toggle profile ON/OFF
-  const toggleProfile = () => {
-    fetchTickets();
-  };
+  const toggleProfile = () => fetchTickets();
 
-  // Select ticket and mark it closed for worker
   const selectTicket = async (ticketId) => {
     try {
       const res = await axios.post(
@@ -55,7 +49,6 @@ const WorkerDashboard = () => {
 
       alert(res.data.message || "Ticket selected successfully");
 
-      // Remove ticket from list
       setTickets((prev) => prev.filter((t) => t.id !== ticketId));
       setTicketStates((prev) => ({ ...prev, [ticketId]: "selected" }));
 
@@ -65,7 +58,6 @@ const WorkerDashboard = () => {
     }
   };
 
-  // Auto-fetch tickets on mount
   useEffect(() => {
     fetchTickets();
   }, []);
@@ -100,17 +92,16 @@ const WorkerDashboard = () => {
         {tickets.length > 0 ? (
           tickets.map((t) => (
             <div key={t.id} className="ticket-card">
-              <p><strong>Name:</strong> {t.user?.first_name} {t.user?.last_name}</p>
+              <h4 className="ticket-user">{t.user?.first_name} {t.user?.last_name}</h4>
               <p><strong>Description:</strong> {t.description}</p>
               <p><strong>Address:</strong> {t.address}</p>
-              <p><strong>Phone No:</strong> {t.phone_no}</p>
+              <p><strong>Phone:</strong> {t.phone_no}</p>
               <p><strong>Distance:</strong> {t.distance_km ? t.distance_km.toFixed(2) + " km" : "Unknown"}</p>
 
               {ticketStates[t.id] === "initial" && (
                 <button
-                  className="btn btn-success"
+                  className="btn btn-success select-btn"
                   onClick={() => selectTicket(t.id)}
-                  style={{ marginTop: "0.5rem" }}
                 >
                   Select Ticket
                 </button>
@@ -118,7 +109,7 @@ const WorkerDashboard = () => {
             </div>
           ))
         ) : (
-          <p>{profileActive ? "No emergency tickets available at the moment." : ""}</p>
+          <p className="no-tickets">{profileActive ? "No emergency tickets available at the moment." : ""}</p>
         )}
       </div>
     </div>

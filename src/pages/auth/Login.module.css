@@ -1,0 +1,199 @@
+/* Global reset for this component only */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Full-page wrapper with soft gradient background */
+.loginContainer {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f9f9f9, #e6f7ff);
+  overflow: hidden;
+}
+
+/* Light background shapes for subtle animation */
+.loginBackgroundShapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(30, 144, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+.shape1 { width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s; }
+.shape2 { width: 120px; height: 120px; top: 60%; right: 15%; animation-delay: 2s; }
+.shape3 { width: 60px; height: 60px; bottom: 20%; left: 20%; animation-delay: 4s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+/* Card container with light background and shadow */
+.loginCard {
+  position: relative;
+  background: #ffffff;
+  padding: 40px 30px;
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  z-index: 10;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.loginTitle {
+  font-size: 28px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 8px;
+}
+.loginSubtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Error container */
+.errorContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  animation: shake 0.4s ease;
+}
+.errorIcon {
+  width: 20px;
+  height: 20px;
+  color: #dc2626;
+  flex-shrink: 0;
+}
+.errorMessage {
+  color: #dc2626;
+  font-size: 14px;
+  font-weight: 500;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%, 75% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+}
+
+/* Form inputs */
+.loginForm {
+  margin-bottom: 25px;
+}
+.inputGroup {
+  margin-bottom: 18px;
+}
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.inputIcon {
+  position: absolute;
+  left: 16px;
+  width: 20px;
+  height: 20px;
+  color: #9ca3af;
+  z-index: 2;
+}
+.loginInput {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+.loginInput:focus {
+  border-color: #1e90ff;
+  box-shadow: 0 0 8px rgba(30, 144, 255, 0.2);
+  outline: none;
+}
+
+/* Gradient button */
+.loginButton {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #1e90ff, #00cfff);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+.loginButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 144, 255, 0.25);
+}
+.buttonIcon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+.loginButton:hover .buttonIcon {
+  transform: translateX(4px);
+}
+
+/* Footer */
+.loginFooter {
+  margin-top: 18px;
+}
+.registerPrompt {
+  font-size: 14px;
+  color: #555;
+}
+.registerLink {
+  color: #1e90ff;
+  font-weight: 500;
+  text-decoration: none;
+}
+.registerLink:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .loginCard { padding: 30px 20px; }
+  .loginTitle { font-size: 24px; }
+}
+@media (max-width: 480px) {
+  .loginCard { padding: 25px 15px; }
+  .loginTitle { font-size: 22px; }
+  .loginInput { padding: 12px 14px 12px 44px; font-size: 14px; }
+  .inputIcon { left: 14px; width: 18px; height: 18px; }
+}
